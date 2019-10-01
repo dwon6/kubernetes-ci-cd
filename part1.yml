@@ -5,13 +5,13 @@ parts:
     steps:
 
       - cap: Start up the Kubernetes cluster with Minikube, giving it some extra resources.
-        com: minikube start --memory 8000 --cpus 2 --kubernetes-version v1.11.0
+        com: minikube start --memory 4000 --cpus 2 --kubernetes-version v1.16.0
 
       - cap: Enable the Minikube add-ons Heapster and Ingress.
         com: minikube addons enable heapster; minikube addons enable ingress
 
       - cap: View the Minikube Dashboard, a web UI for managing deployments.
-        com: minikube service kubernetes-dashboard --namespace kube-system
+        com: minikube service kubernetes-dashboard --namespace kube-system 
 
       - cap: Deploy the public nginx image from DockerHub into a pod. Nginx is an open source web server that will automatically download from Docker Hub if it’s not available locally.
         com: kubectl run nginx --image nginx --port 80
