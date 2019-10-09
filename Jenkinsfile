@@ -11,8 +11,6 @@ node {
     registryHost = "127.0.0.1:30400/"
     imageName = "${registryHost}${appName}:${tag}"
 
-    imageName = "${registryHost}${appName}"
-
     env.BUILDIMG=imageName
 
     stage "Build"
@@ -25,6 +23,8 @@ node {
 
     stage "Deploy"
 
+	sh "kubectl delete service $(appName)"
+        sh "kubectl delete deployment $(appName)"
         kubernetesDeploy configs: "applications/${appName}/k8s/*.yaml", kubeconfigId: 'kenzan_kubeconfig'
 
 }
