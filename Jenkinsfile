@@ -23,8 +23,8 @@ node {
 
     stage "Deploy"
 
-	sh "kubectl delete service $(appName)"
-        sh "kubectl delete deployment $(appName)"
+	sh "kubectl delete service ${appName}"
+        sh "kubectl delete deployment ${appName}"
         kubernetesDeploy configs: "applications/${appName}/k8s/*.yaml", kubeconfigId: 'kenzan_kubeconfig'
 
 }
