@@ -25,6 +25,6 @@ node {
 
 	sh "kubectl delete service ${appName}"
         sh "kubectl delete deployment ${appName}"
-        kubernetesDeploy configs: "applications/${appName}/k8s/manual-deployment.yaml", kubeconfigId: 'kenzan_kubeconfig'
+        kubernetesDeploy configs: "applications/${appName}/k8s/*.yaml", kubeconfigId: 'kenzan_kubeconfig'
 
 }
