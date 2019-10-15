@@ -1,7 +1,15 @@
 #!/usr/bin/env bash
 trap "set +x; sleep 5; set -x" DEBUG
 
-helm init --wait --debug; kubectl rollout status deploy/tiller-deploy -n kube-system
+git config --global user.name “mchalep”
+git config --global user.email patrick.mchale.mail@gmail.com
+git config --global push.default simple
+git config --global core.editor "vim"
+
+minikube config set memory 8192
+minikube config set cpus 4
+
+#helm init --wait --debug; kubectl rollout status deploy/tiller-deploy -n kube-system
 
 helm install stable/etcd-operator --version 0.9.0 --name etcd-operator --debug --wait
 
