@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 trap "set +x; sleep 5; set -x" DEBUG
-helm install --name etcd-operator --set customResources.createEtcdClusterCRD=false stable/etcd-operator
 
-helm upgrade --set customResources.createEtcdClusterCRD=true etcd-operator stable/etcd-operator
+helm init --wait --debug; kubectl rollout status deploy/tiller-deploy -n kube-system
+
+helm install stable/etcd-operator --version 0.9.0 --name etcd-operator --debug --wait
 
 kubectl create -f manifests/etcd-cluster.yaml
 
