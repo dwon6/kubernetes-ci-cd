@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 trap "set +x; sleep 5; set -x" DEBUG
 
-git config --global user.name “mchalep”
+git config --global user.name "mchalep"
 git config --global user.email patrick.mchale.mail@gmail.com
 git config --global push.default simple
 git config --global core.editor "vim"
 
 minikube config set memory 8192
-minikube config set cpus 4
+minikube config set cpus 2
 
 #helm init --wait --debug; kubectl rollout status deploy/tiller-deploy -n kube-system
 
