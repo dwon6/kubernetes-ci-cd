@@ -7,10 +7,6 @@ node {
     imageName = "${registryHost}${appName}:latest"
     env.BUILDIMG=imageName
 
-   stage "Cleanup"
-        sh "kubectl delete service ${appName}"
-        sh "kubectl delete deployment ${appName}"
-
     stage "Build"
     
         sh "docker build -t ${imageName} -f applications/hello-kenzan/Dockerfile applications/hello-kenzan"
